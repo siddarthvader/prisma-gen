@@ -1,1 +1,4 @@
-## run node index.js to generate prisma schema using openAI.
+- npm install
+- add an .env file with `OPEN_API_KEY` field
+- run `node index.js` and generate schemas.
+- it maintains context so you can improve the schema using subsequent queries.
