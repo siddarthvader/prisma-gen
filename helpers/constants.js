@@ -15,7 +15,7 @@ export const PostSchemaChoices = {
     {
       name: "save",
       value: "save",
-      description: "Save the schema to a file",
+      description: "Save the schema to a .prisma file",
     },
     {
       name: "continue",
