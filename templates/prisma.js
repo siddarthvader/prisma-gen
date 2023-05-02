@@ -12,10 +12,13 @@ import {
   getURL,
 } from "../helpers/util.js";
 import { save } from "./save.js";
+import { getContextStore } from "../helpers/store.js";
 
 export async function generatePrismaTemplate(prompt) {
+  const contxtStore = getContextStore();
+  contxtStore.set("user", genratePrompts(prompt, PrismaPromptPostfix));
   const headers = generateHeaders();
-  const body = generateBody(genratePrompts(prompt, PrismaPromptPostfix));
+  const body = generateBody(contxtStore.get());
   const URL = getURL();
 
   //   console.log(JSON.stringify(body, null, 2));
@@ -24,6 +27,7 @@ export async function generatePrismaTemplate(prompt) {
 
   const match = data.choices[0].message.content;
   if (match) {
+    contxtStore.set("assistant", match);
     const output = match.replace(/\\n/g, "\n");
     console.log(output);
   } else {

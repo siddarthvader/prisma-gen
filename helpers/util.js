@@ -18,9 +18,10 @@ export function genratePrompts(prompt, postfix) {
   return `${prompt} ${postfix}`;
 }
 
-export function generateBody(prompt) {
+export function generateBody(messages) {
+  //   console.log(JSON.stringify(messages, null, 2));
   return {
-    messages: [{ role: "user", content: prompt }],
+    messages,
     temperature: 0.5,
     max_tokens: 1024,
     n: 1,
@@ -31,7 +32,7 @@ export function generateBody(prompt) {
 }
 
 export async function writeToFile(schemaName, content) {
-  console.log(content);
+  //   console.log(content);
   const fileName = `${GenerateLocation.folder}/${schemaName}.prisma`;
 
   fs.writeFile(fileName, content, (err) => {

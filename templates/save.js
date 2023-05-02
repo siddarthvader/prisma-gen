@@ -6,7 +6,7 @@ export async function save(content) {
     message: "Write the name of the file to save the schema to",
   });
 
-  console.log({ filename });
+  //   console.log({ filename });
 
   await writeToFile(filename, content);
 }
